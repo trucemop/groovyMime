@@ -83,7 +83,7 @@ public class IdentifyCustomMimeType implements Processor {
     .name("config-file")
     .required(false)
     .description("Path to MIME type config file. Only one of Config File or Config Body may be used.")
-    .addValidator(new StandardValidators.FileExistsValidator(true))
+    .addValidator(Validator.VALID)
     .expressionLanguageSupported(ExpressionLanguageScope.VARIABLE_REGISTRY)
     .build();    
     

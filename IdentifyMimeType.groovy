@@ -133,7 +133,20 @@ public class IdentifyCustomMimeType implements Processor {
     }
     
     @Override
-    public PropertyDescriptor getPropertyDescriptor(String name) { return null }
+    public PropertyDescriptor getPropertyDescriptor(String descriptorName) {
+	final PropertyDescriptor specDescriptor = new PropertyDescriptor.Builder().name(descriptorName).build();
+        final List<PropertyDescriptor> propertyDescriptors = getPropertyDescriptors();
+        if (propertyDescriptors != null) {
+            for (final PropertyDescriptor desc : propertyDescriptors) { //find actual descriptor
+                if (specDescriptor.equals(desc)) {
+                    return desc;
+                }
+            }
+        }
+	return null;
+
+
+    }
     
     @Override
     public void onTrigger(final ProcessContext context, final ProcessSessionFactory sessionFactory) {
